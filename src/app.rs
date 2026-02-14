@@ -1,10 +1,10 @@
 use leptos::prelude::*;
 use leptos_meta::{MetaTags, Stylesheet, provide_meta_context};
 use leptos_router::{
+    SsrMode,
     components::{FlatRoutes, Route, Router},
     path,
     static_routes::StaticRoute,
-    SsrMode,
 };
 
 use crate::components::layout::Layout;
@@ -59,8 +59,8 @@ pub fn App() -> impl IntoView {
 fn HomePage() -> impl IntoView {
     view! {
         <section>
-            <h1 class="text-3xl font-semibold tracking-tight">"Your Name"</h1>
-            <p class="mt-3 text-neutral-300">"Minimal skills summary goes here."</p>
+            <h1 class="text-3xl font-semibold tracking-tight">"Mohammad Kermani"</h1>
+            <p class="mt-3 text-neutral-300">"I like to build things that people use."</p>
         </section>
     }
 }
