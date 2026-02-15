@@ -33,7 +33,7 @@ pub fn App() -> impl IntoView {
         <Stylesheet id="site-style" href="/styles.css"/>
         <Router>
             <Layout>
-                <FlatRoutes fallback=|| view! { <></> }>
+                <FlatRoutes fallback=|| view! { <NotFoundPage/> }>
                     <Route
                         path=path!("/")
                         view=HomePage
@@ -47,6 +47,11 @@ pub fn App() -> impl IntoView {
                     <Route
                         path=path!("/blog/:slug")
                         view=BlogPostPage
+                        ssr=SsrMode::Static(StaticRoute::new())
+                    />
+                    <Route
+                        path=path!("/404")
+                        view=NotFoundPage
                         ssr=SsrMode::Static(StaticRoute::new())
                     />
                 </FlatRoutes>
@@ -125,6 +130,24 @@ fn BlogPostPage() -> impl IntoView {
         <section>
             <h1 class="text-2xl font-semibold tracking-tight">"Post"</h1>
             <p class="mt-3 text-neutral-300">"Post content will render here."</p>
+        </section>
+    }
+}
+
+#[component]
+fn NotFoundPage() -> impl IntoView {
+    view! {
+        <section class="text-center">
+            <p class="text-sm uppercase tracking-widest text-neutral-400">"404"</p>
+            <h1 class="mt-2 text-3xl font-semibold tracking-tight">"Page not found"</h1>
+            <p class="mt-3 text-neutral-300">
+                "The page you requested does not exist."
+            </p>
+            <p class="mt-8">
+                <a class="text-neutral-100 underline underline-offset-4 hover:text-white" href="/">
+                    "Go home"
+                </a>
+            </p>
         </section>
     }
 }
