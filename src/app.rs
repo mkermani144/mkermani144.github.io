@@ -65,17 +65,17 @@ fn HomePage() -> impl IntoView {
     view! {
         <section class="text-center">
             <h1 class="text-3xl font-semibold tracking-tight">"Mohammad Kermani"</h1>
-            <p class="mt-4 text-neutral-300">
+            <p class="mt-4 text-stone-600">
                 "Software Engineer"
             </p>
-            <p class="mt-2 text-neutral-400">
+            <p class="mt-2 text-stone-500">
                 "I love building things that people use."
             </p>
 
-            <ul class="mt-8 flex flex-wrap items-center justify-center gap-5 text-neutral-200">
+            <ul class="mt-8 flex flex-wrap items-center justify-center gap-5 text-stone-600">
                 <li>
                     <a
-                        class="underline decoration-neutral-500 underline-offset-4 hover:text-white"
+                        class="underline decoration-stone-400 underline-offset-4 hover:text-primary"
                         href="https://github.com/mkermani144"
                         rel="noreferrer"
                         target="_blank"
@@ -85,7 +85,7 @@ fn HomePage() -> impl IntoView {
                 </li>
                 <li>
                     <a
-                        class="underline decoration-neutral-500 underline-offset-4 hover:text-white"
+                        class="underline decoration-stone-400 underline-offset-4 hover:text-primary"
                         href="https://linkedin.com/in/mkermani144"
                         rel="noreferrer"
                         target="_blank"
@@ -95,7 +95,7 @@ fn HomePage() -> impl IntoView {
                 </li>
                 <li>
                     <a
-                        class="underline decoration-neutral-500 underline-offset-4 hover:text-white"
+                        class="underline decoration-stone-400 underline-offset-4 hover:text-primary"
                         href="https://x.com/mkermani144"
                         rel="noreferrer"
                         target="_blank"
@@ -106,7 +106,7 @@ fn HomePage() -> impl IntoView {
             </ul>
 
             <p class="mt-8">
-                <a class="text-neutral-100 underline underline-offset-4 hover:text-white" href="/blog.html">
+                <a class="font-medium text-primary underline underline-offset-4 hover:text-primary/85" href="/blog.html">
                     "Read the blog"
                 </a>
             </p>
@@ -119,7 +119,7 @@ fn BlogIndexPage() -> impl IntoView {
     view! {
         <section>
             <h1 class="text-2xl font-semibold tracking-tight">"Blog"</h1>
-            <p class="mt-3 text-neutral-300">"Posts will be listed here."</p>
+            <p class="mt-3 text-stone-600">"Posts will be listed here."</p>
         </section>
     }
 }
@@ -129,7 +129,7 @@ fn BlogPostPage() -> impl IntoView {
     view! {
         <section>
             <h1 class="text-2xl font-semibold tracking-tight">"Post"</h1>
-            <p class="mt-3 text-neutral-300">"Post content will render here."</p>
+            <p class="mt-3 text-stone-600">"Post content will render here."</p>
         </section>
     }
 }
@@ -138,13 +138,13 @@ fn BlogPostPage() -> impl IntoView {
 fn NotFoundPage() -> impl IntoView {
     view! {
         <section class="text-center">
-            <p class="text-sm uppercase tracking-widest text-neutral-400">"404"</p>
+            <p class="text-sm uppercase tracking-widest text-primary">"404"</p>
             <h1 class="mt-2 text-3xl font-semibold tracking-tight">"Page not found"</h1>
-            <p class="mt-3 text-neutral-300">
+            <p class="mt-3 text-stone-600">
                 "The page you requested does not exist."
             </p>
             <p class="mt-8">
-                <a class="text-neutral-100 underline underline-offset-4 hover:text-white" href="/">
+                <a class="font-medium text-primary underline underline-offset-4 hover:text-primary/85" href="/">
                     "Go home"
                 </a>
             </p>
