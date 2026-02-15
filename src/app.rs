@@ -3,11 +3,12 @@ use leptos_meta::{MetaTags, Stylesheet, provide_meta_context};
 use leptos_router::{
     SsrMode,
     components::{FlatRoutes, Route, Router},
+    hooks::use_params_map,
     path,
-    static_routes::StaticRoute,
+    static_routes::{StaticParamsMap, StaticRoute},
 };
 
-use crate::components::layout::Layout;
+use crate::{blog, components::layout::Layout};
 
 pub fn shell(_options: LeptosOptions) -> impl IntoView {
     view! {
@@ -47,7 +48,17 @@ pub fn App() -> impl IntoView {
                     <Route
                         path=path!("/blog/:slug")
                         view=BlogPostPage
-                        ssr=SsrMode::Static(StaticRoute::new())
+                        ssr=SsrMode::Static(
+                            StaticRoute::new().prerender_params(|| async {
+                                let slugs = blog::all_slugs()
+                                    .into_iter()
+                                    .map(|slug| slug.to_string())
+                                    .collect::<Vec<_>>();
+                                let mut params = StaticParamsMap::new();
+                                params.insert("slug", slugs);
+                                params
+                            }),
+                        )
                     />
                     <Route
                         path=path!("/404")
@@ -116,21 +127,73 @@ fn HomePage() -> impl IntoView {
 
 #[component]
 fn BlogIndexPage() -> impl IntoView {
+    let mut posts = blog::all_posts().to_vec();
+    posts.sort_by(|a, b| b.timestamp.cmp(&a.timestamp));
+
     view! {
         <section>
             <h1 class="text-2xl font-semibold tracking-tight">"Blog"</h1>
-            <p class="mt-3 text-stone-600">"Posts will be listed here."</p>
+            <ul class="mt-5 space-y-3">
+                {posts
+                    .into_iter()
+                    .map(|post| {
+                        view! {
+                            <li>
+                                <a
+                                    class="text-lg font-medium text-primary underline underline-offset-4 hover:text-primary/85"
+                                    href=format!("/blog/{}.html", post.slug)
+                                >
+                                    {post.title.to_string()}
+                                </a>
+                                <p class="mt-1 text-sm text-stone-500">{post.date.to_string()}</p>
+                                <p class="mt-1 text-stone-600">{post.summary.to_string()}</p>
+                            </li>
+                        }
+                    })
+                    .collect_view()}
+            </ul>
         </section>
     }
 }
 
 #[component]
 fn BlogPostPage() -> impl IntoView {
+    let params = use_params_map();
+
     view! {
-        <section>
-            <h1 class="text-2xl font-semibold tracking-tight">"Post"</h1>
-            <p class="mt-3 text-stone-600">"Post content will render here."</p>
-        </section>
+        {move || {
+            let slug = params.read().get("slug").unwrap_or_default();
+            match blog::by_slug(&slug) {
+                Some(post) => {
+                    view! {
+                        <section>
+                            <p class="text-sm">
+                                <a class="text-primary underline underline-offset-4 hover:text-primary/85" href="/blog.html">
+                                    "← Back to blog"
+                                </a>
+                            </p>
+                            <h1 class="mt-4 text-2xl font-semibold tracking-tight">{post.title.to_string()}</h1>
+                            <article class="mt-5 space-y-4 text-stone-700" inner_html=post.html.to_string()></article>
+                        </section>
+                    }
+                        .into_any()
+                }
+                None => {
+                    view! {
+                        <section>
+                            <h1 class="text-2xl font-semibold tracking-tight">"Post not found"</h1>
+                            <p class="mt-3 text-stone-600">"The requested post does not exist."</p>
+                            <p class="mt-6">
+                                <a class="text-primary underline underline-offset-4 hover:text-primary/85" href="/blog.html">
+                                    "← Back to blog"
+                                </a>
+                            </p>
+                        </section>
+                    }
+                        .into_any()
+                }
+            }
+        }}
     }
 }
 

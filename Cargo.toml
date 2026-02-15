@@ -10,6 +10,9 @@ leptos_router = { version = "0.8.5", features = ["ssr"] }
 leptos_axum = "0.8.5"
 leptos_config = "0.8.5"
 tokio = { version = "1.38", features = ["rt-multi-thread", "macros"] }
+pulldown-cmark = "0.13"
+serde = { version = "1", features = ["derive"] }
+serde_yaml = "0.9"
 
 # rust-ui dependencies
 leptos_ui = "0.3"
