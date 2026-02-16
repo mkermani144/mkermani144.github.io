@@ -133,7 +133,8 @@ fn BlogIndexPage() -> impl IntoView {
 
     view! {
         <section>
-            <h1 class="text-2xl font-semibold tracking-tight">"Blog"</h1>
+            <h1 class="text-2xl font-semibold tracking-tight">"None of the 404 blogs was found."</h1>
+            <h1 class="text-l tracking-tight">"It's planned, stay tuned."</h1>
             <ul class="mt-5 space-y-3">
                 {posts
                     .into_iter()
