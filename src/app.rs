@@ -7,6 +7,7 @@ use leptos_router::{
     path,
     static_routes::{StaticParamsMap, StaticRoute},
 };
+use chrono::Local;
 
 use crate::{blog, components::layout::Layout};
 
@@ -73,6 +74,8 @@ pub fn App() -> impl IntoView {
 
 #[component]
 fn HomePage() -> impl IntoView {
+    let last_updated = Local::now().format("%B %-d, %Y at %-I:%M %p").to_string();
+
     view! {
         <section class="text-start">
             <h1 class="text-3xl font-semibold tracking-tight pb-8 mb-8 border-b-4 border-double border-black w-fit">"Mohammad Kermani"</h1>
@@ -121,6 +124,8 @@ fn HomePage() -> impl IntoView {
                     </a>
                 </li>
             </ul>
+
+            <p class="mt-6 text-xs text-stone-500">{format!("Last updated: {last_updated}")}</p>
 
         </section>
     }
