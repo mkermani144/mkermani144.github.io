@@ -74,16 +74,22 @@ pub fn App() -> impl IntoView {
 #[component]
 fn HomePage() -> impl IntoView {
     view! {
-        <section class="text-center">
-            <h1 class="text-3xl font-semibold tracking-tight">"Mohammad Kermani"</h1>
-            <p class="mt-4 text-stone-600">
-                "Software Engineer"
+        <section class="text-start">
+            <h1 class="text-3xl font-semibold tracking-tight pb-8 mb-8 border-b-4 border-double border-black w-fit">"Mohammad Kermani"</h1>
+            <p class="mt-2">
+                "I'm a husband, a child, a friend, a software engineer, a lifelong learner, an adventurer, a mentor, and maybe someday, an entrepreneur."
             </p>
-            <p class="mt-2 text-stone-500">
-                "I love building things that people use."
+            <p class="mt-2">
+                "I like nature, books, people, tinkering, traveling, and sometimes household chores."
+            </p>
+            <p class="mt-8">
+                <a class="font-medium text-primary underline underline-offset-4 hover:text-primary/85" href="/blog.html">
+                    "Read my blog"
+                </a>
+                " or check some of my profiles:"
             </p>
 
-            <ul class="mt-8 flex flex-wrap items-center justify-center gap-5 text-stone-600">
+            <ul class="mt-4 flex flex-wrap items-center justify-start gap-5 text-stone-600">
                 <li>
                     <a
                         class="underline decoration-stone-400 underline-offset-4 hover:text-primary"
@@ -116,11 +122,6 @@ fn HomePage() -> impl IntoView {
                 </li>
             </ul>
 
-            <p class="mt-8">
-                <a class="font-medium text-primary underline underline-offset-4 hover:text-primary/85" href="/blog.html">
-                    "Read the blog"
-                </a>
-            </p>
         </section>
     }
 }
