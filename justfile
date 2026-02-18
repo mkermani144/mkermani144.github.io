@@ -1,3 +1,6 @@
+help:
+  @just --list
+
 dev:
   #!/usr/bin/env bash
   command -v cargo-watch >/dev/null 2>&1 || cargo install cargo-watch
