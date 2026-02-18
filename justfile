@@ -13,6 +13,7 @@ dev:
 newblog +blog_title:
   #!/usr/bin/env bash
   set -euo pipefail
+  shopt -s nullglob
 
   title="{{blog_title}}"
   if [ -z "${title// }" ]; then
@@ -29,10 +30,19 @@ newblog +blog_title:
     exit 1
   fi
 
-  timestamp="$(date +%s)"
   mkdir -p blog
-  post_path="blog/${timestamp}-${slug}.md"
-  post_date="$(date -u +%Y-%m-%d)"
+  base_slug="$slug"
+  suffix=2
+  while :; do
+    matches=(blog/*-"${slug}".md)
+    if [ ! -e "blog/draft-${slug}.md" ] && [ "${#matches[@]}" -eq 0 ]; then
+      break
+    fi
+    slug="${base_slug}-${suffix}"
+    suffix=$((suffix + 1))
+  done
+  post_path="blog/draft-${slug}.md"
+  post_date="$(date +%Y-%m-%d)"
 
   printf '%s\n' \
     '---' \
@@ -42,9 +52,15 @@ newblog +blog_title:
     "slug: \"$slug\"" \
     '---' \
     '' \
-    "# $title" \
-    '' \
     'Start writing here.' \
     > "$post_path"
 
+  if [ "$slug" != "$base_slug" ]; then
+    echo "Slug '$base_slug' already existed; using '$slug'."
+  fi
   echo "Created $post_path"
+
+publish:
+  #!/usr/bin/env bash
+  set -euo pipefail
+  bash scripts/publish_blog.sh

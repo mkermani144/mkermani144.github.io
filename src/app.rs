@@ -1,3 +1,4 @@
+use chrono::Local;
 use leptos::prelude::*;
 use leptos_meta::{MetaTags, Stylesheet, provide_meta_context};
 use leptos_router::{
@@ -7,7 +8,6 @@ use leptos_router::{
     path,
     static_routes::{StaticParamsMap, StaticRoute},
 };
-use chrono::Local;
 
 use crate::{blog, components::layout::Layout};
 
@@ -179,8 +179,11 @@ fn BlogPostPage() -> impl IntoView {
                                     "← Back to blog"
                                 </a>
                             </p>
-                            <h1 class="mt-4 text-2xl font-semibold tracking-tight">{post.title.to_string()}</h1>
-                            <article class="mt-5 space-y-4 text-stone-700" inner_html=post.html.to_string()></article>
+                            <h1 class="mt-4 text-4xl font-semibold tracking-tight">{post.title.to_string()}</h1>
+                            <p class="mt-2 text-sm text-stone-500">
+                                {format!("Published {}", post.date)}
+                            </p>
+                            <article class="markdown-content mt-5" inner_html=post.html.to_string()></article>
                         </section>
                     }
                         .into_any()
