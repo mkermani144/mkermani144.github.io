@@ -88,8 +88,8 @@ fn HomePage() -> impl IntoView {
             <p class="section-intro max-w-3xl">
                 "I like nature, books, people, tinkering, traveling, and sometimes household chores."
             </p>
-            <p class="mt-7 text-lg">
-                <a class="font-medium text-primary underline underline-offset-4 hover:text-primary/85" href="/blog.html">
+            <p class="mt-7 section-intro">
+                <a class="font-medium text-primary  underline-offset-4 hover:text-primary/85" href="/blog.html">
                     "Read my blog"
                 </a>
                 " or check some of my profiles:"

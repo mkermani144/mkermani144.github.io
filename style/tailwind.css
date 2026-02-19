@@ -104,7 +104,47 @@
 
   .site-header-link {
     font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-    @apply text-[0.7rem] font-medium uppercase tracking-[0.14em] text-stone-500 underline decoration-stone-400/80 underline-offset-4 hover:text-primary;
+    @apply relative inline-block pb-[0.12rem] text-[0.7rem] font-medium uppercase tracking-[0.14em] text-stone-500 hover:text-primary;
+  }
+
+  .site-header-link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.01rem;
+    width: 100%;
+    height: 1px;
+    border-radius: 999px;
+    background-color: color-mix(in oklab, currentColor 55%, transparent);
+    opacity: 0.32;
+  }
+
+  .site-header-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.02rem;
+    width: 0;
+    height: 0.14rem;
+    border-radius: 999px;
+    background-color: color-mix(in oklab, currentColor 85%, transparent);
+    opacity: 0;
+  }
+
+  .site-header-link:hover::after,
+  .site-header-link:focus-visible::after {
+    animation: nav-link-sweep 560ms cubic-bezier(0.24, 0.74, 0.25, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-header-link:hover::after,
+    .site-header-link:focus-visible::after {
+      animation: none;
+      left: 0;
+      width: 100%;
+      border-radius: 999px;
+      opacity: 1;
+    }
   }
 
   .section-shell {
@@ -134,6 +174,29 @@
 
   .inline-link {
     @apply font-medium text-primary underline underline-offset-4 hover:text-primary/85;
+  }
+
+  @keyframes nav-link-sweep {
+    0% {
+      left: 0;
+      width: 0.28rem;
+      border-radius: 999px;
+      opacity: 0.95;
+    }
+
+    58% {
+      left: 0;
+      width: 100%;
+      border-radius: 999px;
+      opacity: 1;
+    }
+
+    100% {
+      left: calc(100% - 0.28rem);
+      width: 0.28rem;
+      border-radius: 999px;
+      opacity: 0.95;
+    }
   }
 
   .markdown-content {
