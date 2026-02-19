@@ -74,18 +74,21 @@ pub fn App() -> impl IntoView {
 
 #[component]
 fn HomePage() -> impl IntoView {
-    let last_updated = Local::now().format("%B %-d, %Y at %-I:%M %p").to_string();
+    let last_updated = Local::now().format("%B %-d, %Y").to_string();
 
     view! {
         <section class="text-start">
-            <h1 class="text-3xl font-semibold tracking-tight pb-8 mb-8 border-b-4 border-double border-black w-fit">"Mohammad Kermani"</h1>
-            <p class="mt-2">
+            <p class="kicker">"Welcome to my home, stranger 👋"</p>
+            <h1 class="mt-3 text-3xl font-semibold tracking-tight text-stone-900 sm:text-4xl">
+                "Hi, I'm Mohammad"
+            </h1>
+            <p class="section-intro mt-5 max-w-3xl">
                 "I'm a husband, a child, a friend, a software engineer, a lifelong learner, an adventurer, a mentor, and maybe someday, an entrepreneur."
             </p>
-            <p class="mt-2">
+            <p class="section-intro max-w-3xl">
                 "I like nature, books, people, tinkering, traveling, and sometimes household chores."
             </p>
-            <p class="mt-8">
+            <p class="mt-7 text-lg">
                 <a class="font-medium text-primary underline underline-offset-4 hover:text-primary/85" href="/blog.html">
                     "Read my blog"
                 </a>
@@ -125,8 +128,7 @@ fn HomePage() -> impl IntoView {
                 </li>
             </ul>
 
-            <p class="mt-6 text-xs text-stone-500">{format!("Last updated: {last_updated}")}</p>
-
+            <p class="mono-text mt-6 text-xs text-stone-500">{format!("Last updated: {last_updated}")}</p>
         </section>
     }
 }
@@ -137,28 +139,41 @@ fn BlogIndexPage() -> impl IntoView {
     posts.sort_by(|a, b| b.timestamp.cmp(&a.timestamp));
 
     view! {
-        <section>
-            <h1 class="text-2xl font-semibold tracking-tight">"None of the 404 blogs was found."</h1>
-            <h1 class="text-l tracking-tight">"It's planned, stay tuned."</h1>
-            <ul class="mt-5 space-y-3">
-                {posts
-                    .into_iter()
-                    .map(|post| {
-                        view! {
-                            <li>
-                                <a
-                                    class="text-lg font-medium text-primary underline underline-offset-4 hover:text-primary/85"
-                                    href=format!("/blog/{}.html", post.slug)
-                                >
-                                    {post.title.to_string()}
-                                </a>
-                                <p class="mt-1 text-sm text-stone-500">{post.date.to_string()}</p>
-                                <p class="mt-1 text-stone-600">{post.summary.to_string()}</p>
-                            </li>
-                        }
-                    })
-                    .collect_view()}
-            </ul>
+        <section class="text-start">
+            <p class="kicker">"Post-introspection thoughts - Digest with a grain of salt"</p>
+            <h1 class="mt-3 text-3xl font-semibold tracking-tight text-stone-900 sm:text-4xl">"Blog"</h1>
+
+            {if posts.is_empty() {
+                view! {
+                    <section class="section-shell">
+                        <p class="section-intro">"None of the 404 blogs was found."</p>
+                    </section>
+                }
+                    .into_any()
+            } else {
+                view! {
+                    <ul class="line-list mt-6">
+                        {posts
+                            .into_iter()
+                            .map(|post| {
+                                view! {
+                                    <li class="line-item">
+                                        <a
+                                            class="text-xl font-medium text-primary underline underline-offset-4 hover:text-primary/85"
+                                            href=format!("/blog/{}.html", post.slug)
+                                        >
+                                            {post.title.to_string()}
+                                        </a>
+                                        <p class="mono-text mt-2 text-xs text-stone-500">{post.date.to_string()}</p>
+                                        <p class="mt-2 text-stone-700">{post.summary.to_string()}</p>
+                                    </li>
+                                }
+                            })
+                            .collect_view()}
+                    </ul>
+                }
+                    .into_any()
+            }}
         </section>
     }
 }
@@ -174,26 +189,26 @@ fn BlogPostPage() -> impl IntoView {
                 Some(post) => {
                     view! {
                         <section>
-                            <p class="text-sm">
+                            <p class="mono-text text-xs text-stone-500">
                                 <a class="text-primary underline underline-offset-4 hover:text-primary/85" href="/blog.html">
                                     "← Back to blog"
                                 </a>
                             </p>
-                            <h1 class="mt-4 text-4xl font-semibold tracking-tight">{post.title.to_string()}</h1>
-                            <p class="mt-2 text-sm text-stone-500">
+                            <h1 class="mt-4 text-4xl font-semibold tracking-tight text-stone-900">{post.title.to_string()}</h1>
+                            <p class="mono-text mt-2 text-xs text-stone-500">
                                 {format!("Published {}", post.date)}
                             </p>
-                            <article class="markdown-content mt-5" inner_html=post.html.to_string()></article>
+                            <article class="markdown-content mt-6" inner_html=post.html.to_string()></article>
                         </section>
                     }
                         .into_any()
                 }
                 None => {
                     view! {
-                        <section>
-                            <h1 class="text-2xl font-semibold tracking-tight">"Post not found"</h1>
+                        <section class="text-start">
+                            <h1 class="text-2xl font-semibold tracking-tight text-stone-900">"Post not found"</h1>
                             <p class="mt-3 text-stone-600">"The requested post does not exist."</p>
-                            <p class="mt-6">
+                            <p class="mt-6 mono-text text-xs text-stone-500">
                                 <a class="text-primary underline underline-offset-4 hover:text-primary/85" href="/blog.html">
                                     "← Back to blog"
                                 </a>
@@ -211,8 +226,8 @@ fn BlogPostPage() -> impl IntoView {
 fn NotFoundPage() -> impl IntoView {
     view! {
         <section class="text-center">
-            <p class="text-sm uppercase tracking-widest text-primary">"404"</p>
-            <h1 class="mt-2 text-3xl font-semibold tracking-tight">"Page not found"</h1>
+            <p class="kicker text-primary">"404"</p>
+            <h1 class="mt-2 text-3xl font-semibold tracking-tight text-stone-900">"Page not found"</h1>
             <p class="mt-3 text-stone-600">
                 "The page you requested does not exist."
             </p>

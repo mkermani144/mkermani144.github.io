@@ -1,30 +1,29 @@
-@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;500;600;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
-
 :root {
-  --radius: 0.625rem;
-  --background: oklch(0.985 0.004 75);
-  --foreground: oklch(0.33 0.01 70);
-  --card: oklch(0.998 0.003 75);
-  --card-foreground: oklch(0.33 0.01 70);
-  --popover: oklch(0.998 0.003 75);
-  --popover-foreground: oklch(0.33 0.01 70);
-  --primary: oklch(0.555 0.163 48.998);
-  --primary-foreground: oklch(0.98 0.01 75);
-  --secondary: oklch(0.955 0.006 75);
-  --secondary-foreground: oklch(0.4 0.01 70);
-  --muted: oklch(0.945 0.006 75);
-  --muted-foreground: oklch(0.53 0.01 70);
-  --accent: oklch(0.94 0.01 72);
-  --accent-foreground: oklch(0.4 0.01 70);
+  --radius: 0.75rem;
+  --background: oklch(0.984 0.006 78);
+  --foreground: oklch(0.35 0.012 66);
+  --card: oklch(0.995 0.004 80);
+  --card-foreground: oklch(0.35 0.012 66);
+  --popover: oklch(0.995 0.004 80);
+  --popover-foreground: oklch(0.35 0.012 66);
+  --primary: oklch(0.57 0.154 47);
+  --primary-foreground: oklch(0.97 0.01 75);
+  --secondary: oklch(0.955 0.008 76);
+  --secondary-foreground: oklch(0.43 0.012 66);
+  --muted: oklch(0.948 0.008 76);
+  --muted-foreground: oklch(0.54 0.012 66);
+  --accent: oklch(0.942 0.014 76);
+  --accent-foreground: oklch(0.43 0.012 66);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.9 0.006 75);
-  --input: oklch(0.91 0.006 75);
-  --ring: oklch(0.68 0.17 48);
+  --destructive-foreground: oklch(0.97 0.01 75);
+  --border: oklch(0.89 0.01 74);
+  --input: oklch(0.905 0.01 74);
+  --ring: oklch(0.69 0.162 47);
 }
-
 
 @theme inline {
   --color-background: var(--background);
@@ -56,12 +55,36 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   ::selection {
     @apply bg-primary text-primary-foreground;
   }
+
   body {
-    @apply bg-background text-foreground;
-    font-family: "Lora", Georgia, "Times New Roman", serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: "Source Serif 4", Georgia, serif;
+    background-image: radial-gradient(circle at 15% 5%, rgba(212, 155, 105, 0.12), transparent 36%),
+      radial-gradient(circle at 85% 15%, rgba(147, 112, 80, 0.08), transparent 34%),
+      repeating-linear-gradient(0deg, rgba(98, 72, 45, 0.02), rgba(98, 72, 45, 0.02) 1px, transparent 1px, transparent 20px),
+      linear-gradient(to bottom, rgba(255, 252, 245, 0.94), rgba(251, 247, 238, 0.95));
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Fraunces", "Source Serif 4", Georgia, serif;
+  }
+
+  code,
+  pre,
+  .mono-text {
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  a,
+  button {
+    @apply transition-colors duration-200;
   }
 
   button:not(:disabled),
@@ -75,6 +98,44 @@
 }
 
 @layer components {
+  .content-wrap {
+    @apply bg-transparent;
+  }
+
+  .site-header-link {
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    @apply text-[0.7rem] font-medium uppercase tracking-[0.14em] text-stone-500 underline decoration-stone-400/80 underline-offset-4 hover:text-primary;
+  }
+
+  .section-shell {
+    @apply mt-10 border-t border-stone-300/75 pt-8;
+  }
+
+  .section-title {
+    @apply text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl;
+  }
+
+  .section-intro {
+    @apply mt-2 text-[1.02rem] leading-7 text-stone-700;
+  }
+
+  .kicker {
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    @apply text-[0.7rem] font-medium uppercase tracking-[0.14em] text-stone-500;
+  }
+
+  .line-list {
+    @apply mt-4 divide-y divide-stone-300/75 border-y border-stone-300/75;
+  }
+
+  .line-item {
+    @apply py-4;
+  }
+
+  .inline-link {
+    @apply font-medium text-primary underline underline-offset-4 hover:text-primary/85;
+  }
+
   .markdown-content {
     @apply text-stone-700 leading-7;
   }
