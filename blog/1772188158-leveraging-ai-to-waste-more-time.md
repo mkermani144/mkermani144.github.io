@@ -1,7 +1,7 @@
 ---
 title: "leveraging-ai-to-waste-more-time"
 date: "2026-02-27"
-summary: "TODO: add summary."
+summary: "I found a way to waste more time, and it's called AI"
 slug: "leveraging-ai-to-waste-more-time"
 ---
 
