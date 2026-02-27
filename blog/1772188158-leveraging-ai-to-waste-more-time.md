@@ -1,5 +1,5 @@
 ---
-title: "leveraging-ai-to-waste-more-time"
+title: "Leveraging AI to waste more time"
 date: "2026-02-27"
 summary: "I found a way to waste more time, and it's called AI"
 slug: "leveraging-ai-to-waste-more-time"
