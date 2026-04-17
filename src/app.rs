@@ -118,10 +118,15 @@ fn HomePage() -> impl IntoView {
                 "I like nature, books, people, tinkering, traveling, and sometimes household chores."
             </p>
             <p class="mt-7 section-intro">
+                "Read my "
                 <a class="font-medium text-primary  underline-offset-4 hover:text-primary/85" href="/blog.html">
-                    "Read my blog"
+                    "blog"
                 </a>
-                " or check some of my profiles:"
+                ", take a look at the forge for an overview of my past "
+                <a class="font-medium text-primary  underline-offset-4 hover:text-primary/85" href="/forge.html">
+                    "projects"
+                </a>
+                ", or check some of my profiles:"
             </p>
 
             <ul class="mt-4 flex flex-wrap items-center justify-start gap-5 text-stone-600">
