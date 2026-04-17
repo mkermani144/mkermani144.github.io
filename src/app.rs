@@ -112,7 +112,7 @@ fn HomePage() -> impl IntoView {
                 "Hi, I'm Mohammad"
             </h1>
             <p class="section-intro mt-5 max-w-3xl">
-                "I'm a husband, a child, a friend, a software engineer, a lifelong learner, an adventurer, a mentor, and maybe someday, an entrepreneur."
+                "I'm a husband, a child, a friend, an entrepreneur, a software engineer, a lifelong learner, an adventurer, and a mentor."
             </p>
             <p class="section-intro max-w-3xl">
                 "I like nature, books, people, tinkering, traveling, and sometimes household chores."
