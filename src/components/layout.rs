@@ -10,6 +10,23 @@ pub fn Layout(children: Children) -> impl IntoView {
                         <a class="site-header-link" href="/">
                             "Home"
                         </a>
+                        <a class="site-header-link forge-link" href="/forge.html">
+                            "Forge"
+                            <span class="forge-sparks" aria-hidden="true">
+                                <span class="forge-spark"></span>
+                                <span class="forge-spark"></span>
+                                <span class="forge-spark"></span>
+                                <span class="forge-spark"></span>
+                                <span class="forge-spark"></span>
+                                <span class="forge-spark"></span>
+                                <span class="forge-spark"></span>
+                                <span class="forge-spark"></span>
+                                <span class="forge-spark"></span>
+                                <span class="forge-spark"></span>
+                                <span class="forge-spark"></span>
+                                <span class="forge-spark"></span>
+                            </span>
+                        </a>
                         <a class="site-header-link" href="/blog.html">
                             "Blog"
                         </a>
