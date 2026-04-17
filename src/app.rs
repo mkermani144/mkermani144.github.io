@@ -333,7 +333,7 @@ fn ForgePage() -> impl IntoView {
                         <span class="forge-group-company">"EpisAI"</span>
                         <span class="forge-group-sep">"·"</span>
                         <span class="forge-group-role">"Founder"</span>
-                        <span class="forge-group-date">"2025"</span>
+                        <span class="forge-group-date">"2025 - Present"</span>
                     </div>
                     <div class="forge-group-grid">
                         <div class="forge-card forge-card--half">
