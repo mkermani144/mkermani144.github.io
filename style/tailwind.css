@@ -393,7 +393,7 @@
   }
 
   .forge-card--full .forge-metrics {
-    @apply grid-cols-4;
+    @apply grid-cols-2 sm:grid-cols-4;
   }
 
   .forge-card--full .forge-metric-value {
@@ -407,11 +407,11 @@
 
   /* ── Forge: image gallery ── */
   .forge-gallery {
-    @apply mt-4 grid grid-cols-2 gap-2;
+    @apply mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2;
   }
 
   .forge-gallery--3col {
-    @apply grid-cols-3;
+    @apply grid-cols-1 sm:grid-cols-3;
   }
 
   .forge-img {
